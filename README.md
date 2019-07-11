@@ -1,21 +1,19 @@
-# node-zenhub
+Originally forked from https://github.com/ilbonzo/node-zenhub
 
-[![npm version](https://badge.fury.io/js/node-zenhub.svg)](https://badge.fury.io/js/node-zenhub)
-[![Build Status](https://travis-ci.org/ilbonzo/node-zenhub.svg?branch=master)](https://travis-ci.org/ilbonzo/node-zenhub)
-[![Coverage Status](https://coveralls.io/repos/github/ilbonzo/node-zenhub/badge.svg?branch=master)](https://coveralls.io/github/ilbonzo/node-zenhub?branch=master)
-[![Dependencies Status](https://david-dm.org/ilbonzo/node-zenhub.svg)](https://david-dm.org/ilbonzo/node-zenhub)
-[![BCH compliance](https://bettercodehub.com/edge/badge/ilbonzo/node-zenhub?branch=master)](https://bettercodehub.com/)
+# zenhub-client
 
-### A Node.js wrapper for the ZenHub API
+### A promise-capable Node.js wrapper for the ZenHub API
 
 ### Install
 
-```node-zenhub``` is available on ```npm``` and as such, can be installed through ```npm``` with ease.
+```sh
+$ npm install --save zenhub-client
+```
 
-To install ```node-zenhub``` and add it to your ```package.json``` file, use the following command:
+or
 
 ```sh
-$ npm install --save node-zenhub
+$ yarn add zenhub-client
 ```
 
 ### Documentation
@@ -24,27 +22,19 @@ The [official ZenHub documentation](https://github.com/ZenHubIO/API)
 
 ### Usage
 
-In order to use ```node-zenhub``` you will need to generate an API token on the ZenHub website. Once you have this, add the library to your project with the following command:
+In order to use ```zenhub-client``` you will need to generate an API token on the ZenHub website.
 
-```sh
-$ npm install --save node-zenhub
-```
-
-Once installed you need to instantiate a new copy of ```node-zenhub``` in your application, like so:
+Once installed you need to instantiate a new copy of ```zenhub-client``` in your application, like so:
 
 ```js
-var callback = function (error, data) {
-    console.log(error);
-    console.log(data);
+const ZenHubAPI = require('zenhub-client'),
+      myClient = new ZenHubAPI('[token]');
+
+async function myAsyncFunction () {
+  let board = await myClient.boards.getBoard('[repoId]');
+  // do something with board
 }
-
-var ZenHub = require('node-zenhub'),
-    api = new ZenHub('[token]');
-
-api.boards.getBoard('[repoId]', callback);
 ```
-*Note: replace [token] with your token.*
-
 
 ## Available methods
 
@@ -97,17 +87,10 @@ At the moment, test classes can only be run separately. This will e.g. run the I
 npm test
 ```
 
-### Issues
-
-Please raise an issue on GitHub with as much information as possible and the steps to replicate (if possible).
-
-
 ## LICENSE
 
 MIT license. See the LICENSE file for details.
 
 ---
-Fork me on [github](https://github.com/ilbonzo/node-zenhub)
-
-Created by [@ilbonzo](https://twitter.com/ilbonzo)
-
+Originally created by [@ilbonzo](https://twitter.com/ilbonzo)
+Promisified by [@James1x0](https://twitter.com/james_1x0)

@@ -1,8 +1,8 @@
 {
-  "name": "node-zenhub",
-  "version": "1.1.1",
+  "name": "zenhub-client",
+  "version": "1.0.0",
   "description": "ZenHub API wrapper",
-  "author": "Matteo Magni <matteo@magni.me> (magni.me)",
+  "author": "James1x0",
   "license": "MIT",
   "keywords": [
     "zenhub",
@@ -16,14 +16,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ilbonzo/node-zenhub.git"
+    "url": "https://github.com/james1x0/node-zenhub.git"
   },
   "main": "./lib/zenhub.js",
   "directories": {
     "test": "test"
   },
   "engines": {
-    "node": ">=5.0.0"
+    "node": ">=7.6.0"
   },
   "dependencies": {
     "request": "^2.88.0",
