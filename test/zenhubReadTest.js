@@ -24,73 +24,72 @@ describe('ZenHub Issues Read API', function() {
     var api = new Zenhub(config.token);
 
     describe('get issue data test', function() {
-        it('should get issue in a repo', function(done) {
-            api.issues.getIssueData(config.repoId, config.issueId, done);
+        it('should get issue in a repo', async () => {
+            await api.issues.getIssueData(config.repoId, config.issueId);
         });
     });
 
     describe('get issue events test', function() {
-        it('should get issue events in a repo', function(done) {
-            api.issues.getIssueEvents(config.repoId, config.issueId, done);
+        it('should get issue events in a repo', async () => {
+            await api.issues.getIssueEvents(config.repoId, config.issueId);
         });
     });
 });
 
-describe('ZenHub Boards Read API', function() {
+describe('ZenHub Boards Read API', () => {
     var Zenhub = require('../lib/zenhub');
     var api = new Zenhub(config.token);
 
-    describe('Board test', function() {
-        it('should get board of repo', function(done) {
-            api.boards.getBoard(config.repoId, done);
+    describe('Board test', () => {
+        it('should get board of repo', async () => {
+            await api.boards.getBoard(config.repoId);
         });
     });
 });
 
-describe('ZenHub Epics Read API', function() {
+describe('ZenHub Epics Read API', () => {
     var Zenhub = require('../lib/zenhub');
     var api = new Zenhub(config.token);
 
     describe('Repository epics test', function() {
-        it('should get all epics in a repo', function(done) {
-            api.epics.getEpics(config.repoId, done);
+        it('should get all epics in a repo', async () => {
+            await api.epics.getEpics(config.repoId);
         });
-        it('should get all data for an epic', function(done) {
-            var self = this;
-            api.epics.getEpics(config.repoId, function(error, response) {
-                if (response.epic_issues.length === 0) {
-                    return self.skip();
-                }
-                api.epics.getEpicData(config.repoId, response.epic_issues[0].issue_number, done);
-            });
-        });
-    });
-});
+        it('should get all data for an epic', async function () {
+            const response = await api.epics.getEpics(config.repoId);
 
-describe('ZenHub Milestones Read API', function() {
-    var Zenhub = require('../lib/zenhub');
-    var api = new Zenhub(config.token);
-
-    describe('Repository Milestones test', function() {
-        it('should get Milestone startDate', function(done) {
-            api.milestones.getMilestoneStartDate(config.repoId, config.milestoneNumber, done);
+            if (response.epic_issues.length === 0) {
+                return self.skip();
+            }
+            await api.epics.getEpicData(config.repoId, response.epic_issues[0].issue_number);
         });
     });
 });
 
-describe('ZenHub ReleaseReport Read API', function() {
+describe('ZenHub Milestones Read API', () => {
     var Zenhub = require('../lib/zenhub');
     var api = new Zenhub(config.token);
 
-    describe('Get ReleaseReport test', function() {
-        it('should get ReleaseReport', function(done) {
-            api.releaseReports.getReleaseReport(config.releaseId, done);
+    describe('Repository Milestones test', () => {
+        it('should get Milestone startDate', async () => {
+            await api.milestones.getMilestoneStartDate(config.repoId, config.milestoneNumber);
+        });
+    });
+});
+
+describe('ZenHub ReleaseReport Read API', () => {
+    var Zenhub = require('../lib/zenhub');
+    var api = new Zenhub(config.token);
+
+    describe('Get ReleaseReport test', () => {
+        it('should get ReleaseReport', async () => {
+            await api.releaseReports.getReleaseReport(config.releaseId);
         });
     });
 
-    describe('get ReleaseReports for Repository test', function() {
-        it('should get ReleaseReports for repository', function(done) {
-            api.releaseReports.getReleaseReportsForRepository(config.repoId, done);
+    describe('get ReleaseReports for Repository test', () => {
+        it('should get ReleaseReports for repository', async () => {
+            await api.releaseReports.getReleaseReportsForRepository(config.repoId);
         });
     });
 });
